@@ -133,6 +133,18 @@
 			path = FeedCache;
 			sourceTree = "<group>";
 		};
+		6F1D12212517DBBB00979155 /* FeedStoreSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				6F1D12172517CD8800979155 /* FeedStoreSpecs.swift */,
+				6F1D12192517CE3E00979155 /* XCTestCase+FeedStoreSpecs.swift */,
+				6F1D121F2517DB2700979155 /* XCTestCase+FailableDeleteFeedStoreSpecs.swift */,
+				6F1D121B2517D99B00979155 /* XCTestCase+FailableRetrieveFeedStoreSpecs.swift */,
+				6F1D121D2517DA8D00979155 /* XCTestCase+FailableInsertFeedStoreSpecs.swift */,
+			);
+			path = FeedStoreSpecs;
+			sourceTree = "<group>";
+		};
 		6F3A56AE24DEA26100F984EC /* FeedAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,16 +160,12 @@
 		6F56E78D24F7DB7100A14861 /* FeedCache */ = {
 			isa = PBXGroup;
 			children = (
-				6FDE3F2D24FD64F7000E28E6 /* Helpers */,
 				6F56E78E24F7DB9700A14861 /* CacheFeedUseCase.swift */,
-				6F8637E72500117500CEA079 /* ValidateFeedCacheUseCaseTests.swift */,
-				6FDE3F2B24FD629F000E28E6 /* LoadFeedFromCacheUseCase.swift */,
 				6F1199F22514F2CD00AEE1CB /* CodableFeedStoreTests.swift */,
-				6F1D12172517CD8800979155 /* FeedStoreSpecs.swift */,
-				6F1D12192517CE3E00979155 /* XCTestCase+FeedStoreSpecs.swift */,
-				6F1D121F2517DB2700979155 /* XCTestCase+FailableDeleteFeedStoreSpecs.swift */,
-				6F1D121B2517D99B00979155 /* XCTestCase+FailableRetrieveFeedStoreSpecs.swift */,
-				6F1D121D2517DA8D00979155 /* XCTestCase+FailableInsertFeedStoreSpecs.swift */,
+				6FDE3F2B24FD629F000E28E6 /* LoadFeedFromCacheUseCase.swift */,
+				6F8637E72500117500CEA079 /* ValidateFeedCacheUseCaseTests.swift */,
+				6F1D12212517DBBB00979155 /* FeedStoreSpecs */,
+				6FDE3F2D24FD64F7000E28E6 /* Helpers */,
 			);
 			path = FeedCache;
 			sourceTree = "<group>";
