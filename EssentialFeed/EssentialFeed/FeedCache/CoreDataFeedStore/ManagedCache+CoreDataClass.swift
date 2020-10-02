@@ -11,6 +11,6 @@ import Foundation
 import CoreData
 
 @objc(ManagedCache)
-internal class ManagedCache: NSManagedObject {
+class ManagedCache: NSManagedObject {
 
 }
