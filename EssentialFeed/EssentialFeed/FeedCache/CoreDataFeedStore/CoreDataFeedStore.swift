@@ -26,9 +26,9 @@ public final class CoreDataFeedStore: FeedStore {
             do {
                 let managedCache = try ManagedCache.fetchCache(in: context)
                 try managedCache.map(context.delete).map(context.save)
-                completion(nil)
+                completion(.success(()))
             } catch {
-                completion(error)
+                completion(.failure(error))
             }
         }
     }
@@ -43,9 +43,9 @@ public final class CoreDataFeedStore: FeedStore {
 
             do {
                 try context.save()
-                completion(nil)
+                completion(.success(()))
             } catch {
-                completion(error)
+                completion(.failure(error))
             }
         }
     }
