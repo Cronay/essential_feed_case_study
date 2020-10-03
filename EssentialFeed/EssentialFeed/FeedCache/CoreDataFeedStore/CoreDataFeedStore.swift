@@ -23,46 +23,30 @@ public final class CoreDataFeedStore: FeedStore {
 
     public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
         context.perform { [context] in
-            do {
-                let managedCache = try ManagedCache.fetchCache(in: context)
-                try managedCache.map(context.delete).map(context.save)
-                completion(.success(()))
-            } catch {
-                completion(.failure(error))
-            }
+            completion(Result {
+                try ManagedCache.fetchCache(in: context).map(context.delete).map(context.save)
+            })
         }
     }
 
     public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
         context.perform { [context] in
-            let cache = ManagedCache.getUniqueManagedCache(in: context)
-
-            cache.timestamp = timestamp
-            let managedFeedArray = feed.mapToManagedFeedImages(in: context)
-            cache.images = NSOrderedSet(array: managedFeedArray)
-
-            do {
+            completion(Result {
+                let cache = ManagedCache.getUniqueManagedCache(in: context)
+                cache.timestamp = timestamp
+                cache.images = feed.mapToManagedFeedImages(in: context)
                 try context.save()
-                completion(.success(()))
-            } catch {
-                completion(.failure(error))
-            }
+            })
         }
     }
 
     public func retrieve(completion: @escaping RetrievalCompletion) {
         context.perform { [context] in
-            do {
-                let fetchedCache = try ManagedCache.fetchCache(in: context)
-
-                if let managedCache = fetchedCache {
-                    completion(.success(CachedFeed(feed: managedCache.localFeed, timestamp: managedCache.timestamp)))
-                } else {
-                    completion(.success(.none))
+            completion(Result {
+                try ManagedCache.fetchCache(in: context).map {
+                    return CachedFeed(feed: $0.localFeed, timestamp: $0.timestamp)
                 }
-            } catch {
-                completion(.failure(error))
-            }
+            })
         }
     }
 }
@@ -98,7 +82,7 @@ private extension NSPersistentContainer {
 }
 
 private extension Array where Element == LocalFeedImage {
-    func mapToManagedFeedImages(in context: NSManagedObjectContext) -> [ManagedFeedImage] {
+    func mapToManagedFeedImages(in context: NSManagedObjectContext) -> NSOrderedSet {
         let managedFeedArray = self.map { (localImage) -> ManagedFeedImage in
             let managedFeedImage = ManagedFeedImage(context: context)
 
@@ -110,6 +94,6 @@ private extension Array where Element == LocalFeedImage {
             return managedFeedImage
         }
 
-        return managedFeedArray
+        return NSOrderedSet(array: managedFeedArray)
     }
 }
