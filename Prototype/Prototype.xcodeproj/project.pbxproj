@@ -54,12 +54,12 @@
 		6F14F0A9252CDF1900C97F89 /* Prototype */ = {
 			isa = PBXGroup;
 			children = (
+				6F14F0B8252CDF2000C97F89 /* Info.plist */,
 				6F14F0AA252CDF1900C97F89 /* AppDelegate.swift */,
 				6F14F0AC252CDF1900C97F89 /* SceneDelegate.swift */,
-				6F14F0B0252CDF1900C97F89 /* Main.storyboard */,
 				6FCA9E60252CE31600F7337A /* Assets.xcassets */,
 				6F14F0B5252CDF2000C97F89 /* LaunchScreen.storyboard */,
-				6F14F0B8252CDF2000C97F89 /* Info.plist */,
+				6F14F0B0252CDF1900C97F89 /* Main.storyboard */,
 			);
 			path = Prototype;
 			sourceTree = "<group>";
