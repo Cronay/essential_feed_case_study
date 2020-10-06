@@ -78,7 +78,7 @@ class URLSessionHTTPClientTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> HTTPClient {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
@@ -87,7 +87,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     private func resultErrorFor(data: Data?,
                                 response: URLResponse?,
                                 error: Error?,
-                                file: StaticString = #file,
+                                file: StaticString = #filePath,
                                 line: UInt = #line) -> Error? {
         let result = resultFor(data: data, response: response, error: error, file: file, line: line)
 
@@ -103,7 +103,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     private func resultValuesFor(data: Data?,
                                 response: URLResponse?,
                                 error: Error?,
-                                file: StaticString = #file,
+                                file: StaticString = #filePath,
                                 line: UInt = #line) -> (data: Data, response: HTTPURLResponse)? {
         let result = resultFor(data: data, response: response, error: error, file: file, line: line)
 
@@ -119,7 +119,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     private func resultFor(data: Data?,
                            response: URLResponse?,
                            error: Error?,
-                           file: StaticString = #file,
+                           file: StaticString = #filePath,
                            line: UInt = #line) -> HTTPClient.Result {
         URLProtocolStub.stub(data: data, response: response, error: error)
 
