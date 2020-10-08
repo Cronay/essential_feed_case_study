@@ -129,8 +129,8 @@ private extension FeedViewController {
     }
 }
 
-extension UIRefreshControl {
-    public func simulatePullToRefresh() {
+private extension UIRefreshControl {
+    func simulatePullToRefresh() {
         self.allTargets.forEach { target in
             self.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
                 (target as NSObject).perform(Selector($0))
