@@ -19,6 +19,7 @@
 		6F3A56AD24DD6A4500F984EC /* RemoteFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3A56AC24DD6A4500F984EC /* RemoteFeedLoaderTests.swift */; };
 		6F3A56B024DEA27600F984EC /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3A56AF24DEA27600F984EC /* RemoteFeedLoader.swift */; };
 		6F4FFCB0252E170A00EECC45 /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F4FFCA7252E170A00EECC45 /* EssentialFeediOS.framework */; };
+		6F4FFCD6252F33FE00EECC45 /* FeedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4FFCD5252F33FE00EECC45 /* FeedViewControllerTests.swift */; };
 		6F56E78F24F7DB9700A14861 /* CacheFeedUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F56E78E24F7DB9700A14861 /* CacheFeedUseCase.swift */; };
 		6F604A1E2502AE8800A682A0 /* FeedCacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F604A1D2502AE8800A682A0 /* FeedCacheTestHelpers.swift */; };
 		6F604A202502AF4F00A682A0 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F604A1F2502AF4F00A682A0 /* SharedTestHelpers.swift */; };
@@ -98,6 +99,7 @@
 		6F4FFCAA252E170A00EECC45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F4FFCAF252E170A00EECC45 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F4FFCB6252E170A00EECC45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F4FFCD5252F33FE00EECC45 /* FeedViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewControllerTests.swift; sourceTree = "<group>"; };
 		6F56E78E24F7DB9700A14861 /* CacheFeedUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFeedUseCase.swift; sourceTree = "<group>"; };
 		6F604A1D2502AE8800A682A0 /* FeedCacheTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCacheTestHelpers.swift; sourceTree = "<group>"; };
 		6F604A1F2502AF4F00A682A0 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				6F4FFCB6252E170A00EECC45 /* Info.plist */,
+				6F4FFCD5252F33FE00EECC45 /* FeedViewControllerTests.swift */,
 			);
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 					};
 					6F4FFCAE252E170A00EECC45 = {
 						CreatedOnToolsVersion = 12.0.1;
+						LastSwiftMigration = 1200;
 					};
 					6F89881924DD595D00880E24 = {
 						CreatedOnToolsVersion = 11.6;
@@ -601,6 +605,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F4FFCD6252F33FE00EECC45 /* FeedViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,6 +757,7 @@
 		6F4FFCBA252E170A00EECC45 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L3YMK7ENYC;
 				INFOPLIST_FILE = EssentialFeediOSTests/Info.plist;
@@ -764,6 +770,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.yannic-borgfeld.EssentialFeediOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -772,6 +779,7 @@
 		6F4FFCBB252E170A00EECC45 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L3YMK7ENYC;
 				INFOPLIST_FILE = EssentialFeediOSTests/Info.plist;
