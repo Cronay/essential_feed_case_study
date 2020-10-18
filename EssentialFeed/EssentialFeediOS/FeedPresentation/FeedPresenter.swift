@@ -6,7 +6,6 @@
 //  Copyright © 2020 Yannic Borgfeld. All rights reserved.
 //
 
-import Foundation
 import EssentialFeed
 
 protocol FeedLoadingView {
