@@ -76,6 +76,9 @@
                                                             <state key="normal" title="↻">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="retryButtonTapped" destination="Ekz-jt-l52" eventType="touchUpInside" id="C2H-Bq-A7c"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -117,6 +120,14 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="emu-wq-H3x" secondAttribute="bottom" priority="999" constant="6" id="wb2-cU-mgv"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="7aI-6A-mGf" id="Arb-XK-8zh"/>
+                                    <outlet property="feedImageContainer" destination="3HU-D3-7X1" id="feO-Z9-rdl"/>
+                                    <outlet property="feedImageRetryButton" destination="xMa-rI-ZrD" id="gWM-AT-L4f"/>
+                                    <outlet property="feedImageView" destination="51V-Dh-OYu" id="X34-xW-PFc"/>
+                                    <outlet property="locationContainer" destination="rDG-wI-RQW" id="E3H-VP-O9h"/>
+                                    <outlet property="locationLabel" destination="AyR-2y-ftO" id="Dsj-4h-aK9"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
