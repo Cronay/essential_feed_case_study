@@ -330,8 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				6F4FFCB6252E170A00EECC45 /* Info.plist */,
-				6F4FFCD5252F33FE00EECC45 /* FeedUIIntegrationTests.swift */,
-				6FB14B0B25433D9B00B91677 /* Helpers */,
+				6FB14B822543826600B91677 /* FeedUI */,
 			);
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
@@ -501,6 +500,15 @@
 				6FB14B45254380D600B91677 /* UIRefreshControl+TestHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		6FB14B822543826600B91677 /* FeedUI */ = {
+			isa = PBXGroup;
+			children = (
+				6F4FFCD5252F33FE00EECC45 /* FeedUIIntegrationTests.swift */,
+				6FB14B0B25433D9B00B91677 /* Helpers */,
+			);
+			path = FeedUI;
 			sourceTree = "<group>";
 		};
 		6FB5271F252F375900682588 /* Frameworks */ = {
