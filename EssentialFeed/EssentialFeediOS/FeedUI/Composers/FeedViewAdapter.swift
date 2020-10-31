@@ -6,9 +6,8 @@
 //  Copyright © 2020 Yannic Borgfeld. All rights reserved.
 //
 
-import Foundation
-import EssentialFeed
 import UIKit
+import EssentialFeed
 
 final class FeedViewAdapter: FeedView {
     private weak var controller: FeedViewController?
