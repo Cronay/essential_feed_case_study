@@ -6,8 +6,6 @@
 //  Copyright © 2020 Yannic Borgfeld. All rights reserved.
 //
 
-import Foundation
-
 public struct FeedViewModel {
     public let feed: [FeedImage]
 }
