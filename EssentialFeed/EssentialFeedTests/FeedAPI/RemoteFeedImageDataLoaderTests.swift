@@ -23,7 +23,13 @@ class RemoteFeedImageDataLoader {
     func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) {
         client.get(from: url) { result in
             switch result {
-            case .success: completion(.failure(Error.invalidData))
+            case let .success((data, response)):
+                if response.statusCode == 200, !data.isEmpty {
+                    completion(.success(data))
+                } else {
+                    completion(.failure(Error.invalidData))
+                }
+
             case let .failure(error): completion(.failure(error))
             }
         }
@@ -73,7 +79,7 @@ class RemoteFeedImageDataLoaderTests: XCTestCase {
 
         samples.enumerated().forEach { index, code in
             expect(sut, toDeliver: .failure(RemoteFeedImageDataLoader.Error.invalidData), when: {
-                client.complete(withStatusCode: 200, at: index, data: anyData())
+                client.complete(withStatusCode: code, at: index, data: anyData())
             })
         }
     }
@@ -83,6 +89,15 @@ class RemoteFeedImageDataLoaderTests: XCTestCase {
 
         expect(sut, toDeliver: .failure(RemoteFeedImageDataLoader.Error.invalidData), when: {
             client.complete(withStatusCode: 200, at: 0, data: emptyData())
+        })
+    }
+
+    func test_loadImageDataFromURL_deliversNonEmptyDataOn200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        let data = anyData()
+
+        expect(sut, toDeliver: .success(data), when: {
+            client.complete(withStatusCode: 200, at: 0, data: data)
         })
     }
 
@@ -111,7 +126,7 @@ class RemoteFeedImageDataLoaderTests: XCTestCase {
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
 
             default:
-                XCTFail("Expected \(expectedResult), received \(receivedResult) instead")
+                XCTFail("Expected \(expectedResult), received \(receivedResult) instead", file: file, line: line)
             }
             exp.fulfill()
         }
