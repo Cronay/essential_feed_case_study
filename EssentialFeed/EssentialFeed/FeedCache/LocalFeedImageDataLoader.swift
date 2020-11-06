@@ -8,8 +8,24 @@
 
 import Foundation
 
-public class LocalFeedImageDataLoader: FeedImageDataLoader {
+public class LocalFeedImageDataLoader {
 
+    private let store: FeedImageDataStore
+
+    public init(store: FeedImageDataStore) {
+        self.store = store
+    }
+}
+
+extension LocalFeedImageDataLoader {
+    public typealias SaveResult = Result<Void, Error>
+
+    public func save(_ data: Data, for url: URL, completion: (SaveResult) -> Void) {
+        store.insert(data, for: url) { _ in }
+    }
+}
+
+extension LocalFeedImageDataLoader: FeedImageDataLoader {
     private class Task: FeedImageDataLoaderTask {
         private var completion: ((FeedImageDataLoader.Result) -> Void)?
 
@@ -35,12 +51,6 @@ public class LocalFeedImageDataLoader: FeedImageDataLoader {
         case notFound
     }
 
-    private let store: FeedImageDataStore
-
-    public init(store: FeedImageDataStore) {
-        self.store = store
-    }
-
     public func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
         let task = Task(completion)
         store.retrieve(dataForURL: url) { [weak self] result in
@@ -53,11 +63,5 @@ public class LocalFeedImageDataLoader: FeedImageDataLoader {
                             })
         }
         return task
-    }
-
-    public typealias SaveResult = Result<Void, Error>
-
-    public func save(_ data: Data, for url: URL, completion: (SaveResult) -> Void) {
-        store.insert(data, for: url) { _ in }
     }
 }
