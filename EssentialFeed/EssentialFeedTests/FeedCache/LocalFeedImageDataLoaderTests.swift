@@ -61,7 +61,7 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
     func test_loadImageDataFromURL_deliversErrorOnStoreError() {
         let (sut, store) = makeSUT()
 
-        expect(sut, toCompleteWith: .failure(LocalFeedImageDataLoader.Error.failed), when: {
+        expect(sut, toCompleteWith: failed(), when: {
             let retrievalError = anyNSError()
             store.complete(with: retrievalError)
         })
@@ -70,7 +70,7 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
     func test_loadImageDataFromURL_deliversNotFoundErrorOnNotFound() {
         let (sut, store) = makeSUT()
 
-        expect(sut, toCompleteWith: .failure(LocalFeedImageDataLoader.Error.notFound), when: {
+        expect(sut, toCompleteWith: notFound(), when: {
             store.complete(with: .none)
         })
     }
@@ -114,6 +114,14 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
         action()
 
         wait(for: [exp], timeout: 1.0)
+    }
+
+    private func failed() -> FeedImageDataLoader.Result {
+        return .failure(LocalFeedImageDataLoader.Error.failed)
+    }
+
+    private func notFound() -> FeedImageDataLoader.Result {
+        return .failure(LocalFeedImageDataLoader.Error.notFound)
     }
 
     private class StoreSpy: FeedImageDataStore {
