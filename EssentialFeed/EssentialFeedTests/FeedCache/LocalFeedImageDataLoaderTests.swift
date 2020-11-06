@@ -17,13 +17,23 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
         XCTAssertTrue(store.receivedMessages.isEmpty)
     }
 
+    func test_saveImageDataForURL_requestsImageDataInsertionForURL() {
+        let (sut, store) = makeSUT()
+        let url = anyURL()
+        let data = anyData()
+
+        sut.save(data, for: url) { _ in }
+
+        XCTAssertEqual(store.receivedMessages, [.insert(data: data, for: url)])
+    }
+
     func test_loadImageDataFromURL_requestsStoredDataForURL() {
         let (sut, store) = makeSUT()
         let url = anyURL()
 
         _ = sut.loadImageData(from: url) { _ in }
 
-        XCTAssertEqual(store.requestedURLs, [url])
+        XCTAssertEqual(store.receivedMessages, [.retrieve(dataFor: url)])
     }
 
     func test_loadImageDataFromURL_deliversErrorOnStoreError() {
@@ -121,22 +131,29 @@ class LocalFeedImageDataLoaderTests: XCTestCase {
     }
 
     private class StoreSpy: FeedImageDataStore {
-        var receivedMessages = [(url: URL, completion: (FeedImageDataStore.Result) -> Void)]()
+        enum Message: Equatable {
+            case insert(data: Data, for: URL)
+            case retrieve(dataFor: URL)
+        }
 
-        var requestedURLs: [URL] {
-            return receivedMessages.map { $0.url }
+        private var completions = [(FeedImageDataStore.Result) -> Void]()
+        private(set) var receivedMessages = [Message]()
+
+        func insert(_ data: Data, for url: URL, completion: @escaping (FeedImageDataStore.InsertionResult) -> Void) {
+            receivedMessages.append(.insert(data: data, for: url))
         }
 
         func retrieve(dataForURL url: URL, completion: @escaping (FeedImageDataStore.Result) -> Void) {
-            receivedMessages.append((url, completion))
+            receivedMessages.append(.retrieve(dataFor: url))
+            completions.append(completion)
         }
 
         func complete(with error: Error, at index: Int = 0) {
-            receivedMessages[index].completion(.failure(error))
+            completions[index](.failure(error))
         }
 
         func complete(with data: Data?, at index: Int = 0) {
-            receivedMessages[index].completion(.success(data))
+            completions[index](.success(data))
         }
     }
 }
