@@ -10,8 +10,8 @@
 import Foundation
 import CoreData
 
-extension ManagedFeedImage {
-
+@objc(ManagedFeedImage)
+class ManagedFeedImage: NSManagedObject {
     @NSManaged var id: UUID
     @NSManaged var imageDescription: String?
     @NSManaged var location: String?
