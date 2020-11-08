@@ -10,13 +10,13 @@
 import Foundation
 import CoreData
 
-
 extension ManagedFeedImage {
 
     @NSManaged var id: UUID
     @NSManaged var imageDescription: String?
     @NSManaged var location: String?
     @NSManaged var url: URL
+    @NSManaged var data: Data?
     @NSManaged var cache: ManagedCache?
 
     var localFeedImage: LocalFeedImage {
