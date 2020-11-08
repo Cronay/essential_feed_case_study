@@ -22,6 +22,17 @@ public final class CoreDataFeedStore {
         persistentContainer = try NSPersistentContainer.loadFeedStorePersistentContainer(at: storeURL, with: managedObjectModel)
         context = persistentContainer.newBackgroundContext()
     }
+
+    private func cleanUpReferencesToPersistentStores() {
+        context.performAndWait {
+            let coordinator = self.persistentContainer.persistentStoreCoordinator
+            try? coordinator.persistentStores.forEach(coordinator.remove)
+        }
+    }
+
+    deinit {
+        cleanUpReferencesToPersistentStores()
+    }
 }
 
 private extension NSManagedObjectModel {
