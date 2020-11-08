@@ -308,13 +308,13 @@
 		6F050B6324FAAD6F0027E003 /* FeedCache */ = {
 			isa = PBXGroup;
 			children = (
-				6F777DDB2526752A0018ADCF /* CoreDataFeedStore */,
-				6F050B6424FAADB40027E003 /* LocalFeedLoader.swift */,
 				6F929AA225127B990086452E /* FeedCachePolicy.swift */,
+				6FE39CB22555EF72002CE2B0 /* FeedImageDataStore.swift */,
 				6F050B6624FAAED80027E003 /* FeedStore.swift */,
 				6F050B6A24FBB9040027E003 /* LocalFeedImage.swift */,
-				6FE39CB22555EF72002CE2B0 /* FeedImageDataStore.swift */,
 				6FE39CB92555EFA8002CE2B0 /* LocalFeedImageDataLoader.swift */,
+				6F050B6424FAADB40027E003 /* LocalFeedLoader.swift */,
+				6F777DDB2526752A0018ADCF /* CoreDataFeedStore */,
 			);
 			path = FeedCache;
 			sourceTree = "<group>";
