@@ -9,8 +9,8 @@
 
 import CoreData
 
-
-extension ManagedCache {
+@objc(ManagedCache)
+class ManagedCache: NSManagedObject {
 
     @nonobjc class func fetchCache(in context: NSManagedObjectContext) throws -> ManagedCache? {
         let request = NSFetchRequest<ManagedCache>(entityName: "Cache")
