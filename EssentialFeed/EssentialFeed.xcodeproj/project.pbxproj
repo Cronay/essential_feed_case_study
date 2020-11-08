@@ -463,11 +463,11 @@
 			isa = PBXGroup;
 			children = (
 				6F777DE22526759F0018ADCF /* CoreDataFeedStore.swift */,
-				6F777DDC2526759F0018ADCF /* FeedCache.xcdatamodeld */,
-				6F777DDF2526759F0018ADCF /* ManagedCache.swift */,
-				6F777DE12526759F0018ADCF /* ManagedFeedImage.swift */,
 				6FE39CE425582F93002CE2B0 /* CoreDataFeedStore+FeedImageDataLoader.swift */,
 				6FE39CEB255837E0002CE2B0 /* CoreDataFeedStore+FeedStore.swift */,
+				6F777DDF2526759F0018ADCF /* ManagedCache.swift */,
+				6F777DE12526759F0018ADCF /* ManagedFeedImage.swift */,
+				6F777DDC2526759F0018ADCF /* FeedCache.xcdatamodeld */,
 			);
 			path = CoreDataFeedStore;
 			sourceTree = "<group>";
