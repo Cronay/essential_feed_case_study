@@ -99,7 +99,14 @@ class ValidateFeedCacheUseCaseTests: XCTestCase {
             store.completeRetrieval(with: anyNSError())
             store.completeDeletionSuccessfully()
         })
+    }
 
+    func test_validateCache_suceedsOnEmptyCache() {
+        let (sut, store) = makeSUT()
+
+        expect(sut, toCompleteWith: .success(()), when: {
+            store.completeRetrievalWithEmptyCache()
+        })
     }
 
     // MARK: - Helpers
