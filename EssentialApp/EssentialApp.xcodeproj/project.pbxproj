@@ -94,11 +94,10 @@
 		6F023FE6255DBF4E0060B705 /* EssentialAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				6F7B7767255F469C004B96B6 /* Helpers */,
 				6F023FE9255DBF4E0060B705 /* Info.plist */,
 				6F023FF1255DBF760060B705 /* FeedLoaderWithFallbackCompositeTests.swift */,
 				6F897D41255ECB660070FF78 /* FeedImageDataLoaderWithFallbackCompositeTests.swift */,
-				6F7B7761255F45E8004B96B6 /* XCTestCase+MemoryLeakTracking.swift */,
-				6F7B7764255F4667004B96B6 /* SharedTestHelpers.swift */,
 			);
 			path = EssentialAppTests;
 			sourceTree = "<group>";
@@ -145,6 +144,15 @@
 				6F248C69255AFEC000F37779 /* EssentialFeediOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6F7B7767255F469C004B96B6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6F7B7761255F45E8004B96B6 /* XCTestCase+MemoryLeakTracking.swift */,
+				6F7B7764255F4667004B96B6 /* SharedTestHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
