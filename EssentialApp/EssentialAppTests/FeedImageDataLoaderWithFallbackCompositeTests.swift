@@ -12,9 +12,11 @@ final class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
     let primary: FeedImageDataLoader
     let fallback: FeedImageDataLoader
 
-    private class Task: FeedImageDataLoaderTask {
-        func cancel() {
+    private class TaskWrapper: FeedImageDataLoaderTask {
+        var wrapped: FeedImageDataLoaderTask?
 
+        func cancel() {
+            wrapped?.cancel()
         }
     }
 
@@ -24,15 +26,16 @@ final class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
     }
 
     func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
-        let task = primary.loadImageData(from: url) { [weak self] result in
+        let taskWrapper = TaskWrapper()
+        taskWrapper.wrapped = primary.loadImageData(from: url) { [weak self] result in
             switch result {
             case .success:
                 break
             case .failure:
-                _ = self?.fallback.loadImageData(from: url) { _ in }
+                taskWrapper.wrapped = self?.fallback.loadImageData(from: url) { _ in }
             }
         }
-        return task
+        return taskWrapper
     }
 }
 
@@ -74,6 +77,18 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
 
         XCTAssertEqual(primaryLoader.cancelledURLs, [url], "Expected one URL to be cancelled from primary")
         XCTAssertTrue(fallbackLoader.cancelledURLs.isEmpty, "Expected no cancelled URLs from fallback")
+    }
+
+    func test_loadImageData_cancelsFallbackLoaderAfterPrimaryLoaderFailed() {
+        let (sut, primaryLoader, fallbackLoader) = makeSUT()
+        let url = anyURL()
+
+        let task = sut.loadImageData(from: url) { _ in }
+        primaryLoader.complete(with: anyNSError())
+        task.cancel()
+
+        XCTAssertTrue(primaryLoader.cancelledURLs.isEmpty, "Expected no cancelled URL for the primary")
+        XCTAssertEqual(fallbackLoader.cancelledURLs, [url], "Expected URL to be cancelled for the fallback")
     }
 
     // MARK: - Helpers
