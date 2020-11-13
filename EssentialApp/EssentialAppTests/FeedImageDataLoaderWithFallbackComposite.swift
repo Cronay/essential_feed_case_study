@@ -10,6 +10,7 @@ import EssentialFeed
 
 final class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
     let primary: FeedImageDataLoader
+    let fallback: FeedImageDataLoader
 
     private class Task: FeedImageDataLoaderTask {
         func cancel() {
@@ -19,10 +20,18 @@ final class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
 
     init(primary: FeedImageDataLoader, fallback: FeedImageDataLoader) {
         self.primary = primary
+        self.fallback = fallback
     }
 
     func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
-        _ = primary.loadImageData(from: url) { _ in }
+        _ = primary.loadImageData(from: url) { [weak self] result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                _ = self?.fallback.loadImageData(from: url) { _ in }
+            }
+        }
         return Task()
     }
 }
@@ -43,6 +52,17 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
 
         XCTAssertEqual(primaryLoader.loadedURLs, [url], "Expected one URL to be loaded from primary")
         XCTAssertTrue(fallbackLoader.loadedURLs.isEmpty, "Expected no loaded URL from fallback")
+    }
+
+    func test_loadImageData_loadsFromFallbackWhenPrimaryFails() {
+        let (sut, primaryLoader, fallbackLoader) = makeSUT()
+        let url = anyURL()
+
+        _ = sut.loadImageData(from: url) { _ in }
+        primaryLoader.complete(with: anyNSError())
+
+        XCTAssertEqual(primaryLoader.loadedURLs, [url], "Expected one URL to be loaded from primary")
+        XCTAssertEqual(fallbackLoader.loadedURLs, [url], "Expected one URL to be loaded from fallback")
     }
 
     // MARK: - Helpers
@@ -80,9 +100,17 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
             messages.append((url, completion))
             return Task()
         }
+
+        func complete(with error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
+        }
     }
 
     private func anyURL() -> URL {
         return URL(string: "http://any-url.com")!
+    }
+
+    private func anyNSError() -> NSError {
+        return NSError(domain: "any", code: 0)
     }
 }
