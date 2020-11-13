@@ -124,12 +124,6 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
 
     }
 
-    private func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString, line: UInt) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
-        }
-    }
-
     private class LoaderSpy: FeedImageDataLoader {
         var messages = [(url: URL, completion: (FeedImageDataLoader.Result) -> Void)]()
         var cancelledURLs = [URL]()
