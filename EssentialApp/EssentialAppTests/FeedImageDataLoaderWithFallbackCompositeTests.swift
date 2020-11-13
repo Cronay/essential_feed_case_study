@@ -30,7 +30,8 @@ final class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
         taskWrapper.wrapped = primary.loadImageData(from: url) { [weak self] result in
             switch result {
             case .success:
-                break
+                completion(result)
+
             case .failure:
                 taskWrapper.wrapped = self?.fallback.loadImageData(from: url) { _ in }
             }
@@ -91,6 +92,27 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
         XCTAssertEqual(fallbackLoader.cancelledURLs, [url], "Expected URL to be cancelled for the fallback")
     }
 
+    func test_loadImageData_deliversPrimaryDataOnPrimarySuccess() {
+        let data = anyData()
+        let (sut, primaryLoader, _) = makeSUT()
+        let exp = expectation(description: "Wait for load completion")
+
+        _ = sut.loadImageData(from: anyURL(), completion: { result in
+            switch result {
+            case let .success(receivedData):
+                XCTAssertEqual(data, receivedData)
+
+            default:
+                XCTFail("Expected success, got \(result) instead")
+            }
+            exp.fulfill()
+        })
+
+        primaryLoader.complete(with: data)
+
+        wait(for: [exp], timeout: 1.0)
+    }
+
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: FeedImageDataLoader, primary: LoaderSpy, fallback: LoaderSpy) {
@@ -130,6 +152,10 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
         func complete(with error: Error, at index: Int = 0) {
             messages[index].completion(.failure(error))
         }
+
+        func complete(with data: Data, at index: Int = 0) {
+            messages[index].completion(.success(data))
+        }
     }
 
     private func anyURL() -> URL {
@@ -138,5 +164,9 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
 
     private func anyNSError() -> NSError {
         return NSError(domain: "any", code: 0)
+    }
+
+    private func anyData() -> Data {
+        return Data("any data".utf8)
     }
 }
