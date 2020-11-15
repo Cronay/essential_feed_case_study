@@ -100,6 +100,7 @@
 		6FE5F22C25267B9C000C35A3 /* XCTTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7ED0724E733B100CD5637 /* XCTTestCase+MemoryLeakTracking.swift */; };
 		6FE5F23125267F5E000C35A3 /* FeedCacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F604A1D2502AE8800A682A0 /* FeedCacheTestHelpers.swift */; };
 		6FE5F23625267F73000C35A3 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F604A1F2502AF4F00A682A0 /* SharedTestHelpers.swift */; };
+		6FE6A2332561CB0100161571 /* FeedCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6A2322561CB0100161571 /* FeedCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -252,6 +253,7 @@
 		6FE5F21D25267967000C35A3 /* EssentialFeedCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FE5F21F25267967000C35A3 /* EssentialFeedCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedCacheIntegrationTests.swift; sourceTree = "<group>"; };
 		6FE5F22125267967000C35A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6FE6A2322561CB0100161571 /* FeedCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -528,6 +530,7 @@
 				6F574DC02534AD790075613A /* FeedImageDataLoader.swift */,
 				6F89883424DD598300880E24 /* FeedImage.swift */,
 				6F89883624DD5A6700880E24 /* FeedLoader.swift */,
+				6FE6A2322561CB0100161571 /* FeedCache.swift */,
 			);
 			path = FeedFeature;
 			sourceTree = "<group>";
@@ -917,6 +920,7 @@
 				6F63A6D8254DCC9900785B21 /* FeedErrorViewModel.swift in Sources */,
 				6F777DE82526759F0018ADCF /* CoreDataFeedStore.swift in Sources */,
 				6F777DE32526759F0018ADCF /* FeedCache.xcdatamodeld in Sources */,
+				6FE6A2332561CB0100161571 /* FeedCache.swift in Sources */,
 				6F63A70F254DDB1300785B21 /* FeedImagePresenter.swift in Sources */,
 				6F63A6AE254DCB3000785B21 /* FeedPresenter.swift in Sources */,
 				6F777DE72526759F0018ADCF /* ManagedFeedImage.swift in Sources */,
