@@ -454,7 +454,6 @@
 				6F63A6D7254DCC9900785B21 /* FeedErrorViewModel.swift */,
 				6F63A70E254DDB1300785B21 /* FeedImagePresenter.swift */,
 				6F63A715254DDB8700785B21 /* FeedImageViewModel.swift */,
-				6F574DC02534AD790075613A /* FeedImageDataLoader.swift */,
 			);
 			path = FeedPresentation;
 			sourceTree = "<group>";
@@ -526,6 +525,7 @@
 		6F89883824DD5C1200880E24 /* FeedFeature */ = {
 			isa = PBXGroup;
 			children = (
+				6F574DC02534AD790075613A /* FeedImageDataLoader.swift */,
 				6F89883424DD598300880E24 /* FeedImage.swift */,
 				6F89883624DD5A6700880E24 /* FeedLoader.swift */,
 			);
