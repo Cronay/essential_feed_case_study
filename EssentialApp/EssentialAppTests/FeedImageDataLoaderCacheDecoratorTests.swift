@@ -24,7 +24,7 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase {
 
     func test_loadImageData_deliversSuccessOnDecorateeSuccess() {
         let imageData = anyData()
-        let loader = LoaderSpy()
+        let loader = FeedImageDataLoaderSpy()
         let sut = FeedImageDataLoaderCacheDecorator(decoratee: loader)
 
         expect(sut, toCompleteWith: .success(imageData), when: {
@@ -33,14 +33,13 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase {
     }
 
     func test_loadImageData_deliversErrorOnDecorateeFailure() {
-        let loader = LoaderSpy()
+        let loader = FeedImageDataLoaderSpy()
         let sut = FeedImageDataLoaderCacheDecorator(decoratee: loader)
 
         expect(sut, toCompleteWith: .failure(anyNSError()), when: {
             loader.complete(with: anyNSError())
         })
     }
-
 
     // MARK: - Helpers
 
@@ -66,33 +65,4 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
 
     }
-
-
-    private class LoaderSpy: FeedImageDataLoader {
-        var messages = [(url: URL, completion: (FeedImageDataLoader.Result) -> Void)]()
-        var cancelledURLs = [URL]()
-
-        var loadedURLs: [URL] {
-            messages.map { $0.url }
-        }
-
-        private struct Task: FeedImageDataLoaderTask {
-            let callback: () -> Void
-            func cancel() { callback() }
-        }
-
-        func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
-            messages.append((url, completion))
-            return Task { [weak self] in self?.cancelledURLs.append(url) }
-        }
-
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
-
-        func complete(with data: Data, at index: Int = 0) {
-            messages[index].completion(.success(data))
-        }
-    }
-
 }
