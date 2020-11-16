@@ -23,7 +23,7 @@ extension FeedImageDataLoaderTestCase {
                 break
 
             default:
-                XCTFail("Expected success, got \(receivedResult) instead")
+                XCTFail("Expected success, got \(receivedResult) instead", file: file, line: line)
             }
             exp.fulfill()
         })
