@@ -60,6 +60,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 fallback: FeedImageDataLoaderCacheDecorator(
                     decoratee: remoteImageLoader,
                     cache: localImageLoader))))
+        window?.makeKeyAndVisible()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
