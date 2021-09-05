@@ -34,7 +34,7 @@ class CacheFeedUseCase: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.deleteCachedFeed])
     }
 
-    func test_save_requestsNewCacheInsertionWithTimeStampOnSuccessfulDeletion() {
+    func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
         let timestamp = Date()
         let feed = uniqueImageFeed()
         let (sut, store) = makeSUT(currentDate: { timestamp })
