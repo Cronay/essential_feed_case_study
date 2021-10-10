@@ -12,13 +12,13 @@ import EssentialFeediOS
 class SceneDelegateTests: XCTestCase {
 
     func test_configureWindow_setsWindowAsKeyAndVisible() {
-        let window = UIWindow()
+        let window = UIWindowSpy()
         let sut = SceneDelegate()
         sut.window = window
 
         sut.configureWindow()
 
-        XCTAssertTrue(window.isKeyWindow, "Expected window to be key window")
+        XCTAssertEqual(window.makeKeyCallCount, 1, "Expected window to be key window")
         XCTAssertFalse(window.isHidden, "Expected window to be visible")
     }
 
@@ -36,4 +36,13 @@ class SceneDelegateTests: XCTestCase {
         XCTAssertTrue(topController is FeedViewController)
     }
 
+    // MARK: - Helpers
+    
+    private class UIWindowSpy: UIWindow {
+        var makeKeyCallCount = 0
+        
+        override func makeKey() {
+            makeKeyCallCount += 1
+        }
+    }
 }
