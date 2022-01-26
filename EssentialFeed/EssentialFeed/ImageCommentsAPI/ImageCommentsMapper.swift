@@ -11,6 +11,23 @@ import Foundation
 class ImageCommentsMapper {
     private struct Root: Decodable {
         let items: [RemoteImageCommentItem]
+        
+        var imageComments: [ImageComment] {
+            items.map {
+                ImageComment(id: $0.id, message: $0.message, createdAt: $0.created_at, author: $0.author.username)
+            }
+        }
+    }
+    
+    private struct RemoteImageCommentItem: Decodable {
+        let id: UUID
+        let message: String
+        let created_at: Date
+        let author: RemoteImageCommentAuthor
+    }
+
+    private struct RemoteImageCommentAuthor: Decodable {
+        let username: String
     }
 
     private static var OK_200: Int { return 200 }
@@ -22,19 +39,10 @@ class ImageCommentsMapper {
             throw RemoteImageCommentsLoader.Error.invalidData
         }
 
-        return root.items.toModels()
+        return root.imageComments
     }
     
     private static func isOK(_ response: HTTPURLResponse) -> Bool {
         (200...299).contains(response.statusCode)
     }
 }
-
-private extension Array where Element == RemoteImageCommentItem {
-    func toModels() -> [ImageComment] {
-        return map {
-            ImageComment(id: $0.id, message: $0.message, createdAt: $0.created_at, author: $0.author.username)
-        }
-    }
-}
-

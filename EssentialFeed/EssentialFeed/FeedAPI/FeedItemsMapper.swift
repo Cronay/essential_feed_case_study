@@ -11,6 +11,19 @@ import Foundation
 class FeedItemsMapper {
     private struct Root: Decodable {
         let items: [RemoteFeedItem]
+        
+        var feedImages: [FeedImage] {
+            items.map {
+                FeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.image)
+            }
+        }
+    }
+    
+    private struct RemoteFeedItem: Decodable {
+        let id: UUID
+        let description: String?
+        let location: String?
+        let image: URL
     }
 
     private static var OK_200: Int { return 200 }
@@ -20,15 +33,6 @@ class FeedItemsMapper {
             throw RemoteFeedLoader.Error.invalidData
         }
 
-        return root.items.toModels()
+        return root.feedImages
     }
 }
-
-private extension Array where Element == RemoteFeedItem {
-    func toModels() -> [FeedImage] {
-        return map {
-            FeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.image)
-        }
-    }
-}
-
