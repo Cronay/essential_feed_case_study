@@ -53,7 +53,7 @@ class RemoteImageCommentsLoaderTests: XCTestCase {
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWith: failure(.invalidData), when: {
                 let json = makeItemJSON([])
-                client.complete(withStatusCode: code, at: index, data: json)
+                client.complete(withStatusCode: code, data: json, at: index)
             })
         }
     }
@@ -66,7 +66,7 @@ class RemoteImageCommentsLoaderTests: XCTestCase {
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWith: failure(.invalidData),when: {
                 let invalidJSON = Data("invalid json".utf8)
-                client.complete(withStatusCode: code, at: index, data: invalidJSON)
+                client.complete(withStatusCode: code, data: invalidJSON, at: index)
             })
         }
     }
@@ -79,7 +79,7 @@ class RemoteImageCommentsLoaderTests: XCTestCase {
         
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWith: .success([]), when: {
-                client.complete(withStatusCode: code, at: index, data: emptyListJSON)
+                client.complete(withStatusCode: code, data: emptyListJSON, at: index)
             })
         }
     }
