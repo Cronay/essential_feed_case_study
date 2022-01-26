@@ -38,19 +38,8 @@ public final class RemoteImageCommentsLoader {
     }
 
     private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
-        do {
-            let items = try ImageCommentsMapper.map(data, from: response)
-            return .success(items.toModels())
-        } catch {
-            return .failure(error)
-        }
-    }
-}
-
-private extension Array where Element == RemoteImageCommentItem {
-    func toModels() -> [ImageComment] {
-        return map {
-            ImageComment(id: $0.id, message: $0.message, createdAt: $0.created_at, author: $0.author.username)
+        Result {
+            try ImageCommentsMapper.map(data, from: response)
         }
     }
 }

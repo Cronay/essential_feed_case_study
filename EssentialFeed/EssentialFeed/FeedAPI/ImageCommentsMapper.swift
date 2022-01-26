@@ -15,17 +15,26 @@ class ImageCommentsMapper {
 
     private static var OK_200: Int { return 200 }
 
-    static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteImageCommentItem] {
+    static func map(_ data: Data, from response: HTTPURLResponse) throws -> [ImageComment] {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .iso8601
         guard isOK(response), let root = try? jsonDecoder.decode(Root.self, from: data) else {
             throw RemoteImageCommentsLoader.Error.invalidData
         }
 
-        return root.items
+        return root.items.toModels()
     }
     
     private static func isOK(_ response: HTTPURLResponse) -> Bool {
         (200...299).contains(response.statusCode)
     }
 }
+
+private extension Array where Element == RemoteImageCommentItem {
+    func toModels() -> [ImageComment] {
+        return map {
+            ImageComment(id: $0.id, message: $0.message, createdAt: $0.created_at, author: $0.author.username)
+        }
+    }
+}
+
