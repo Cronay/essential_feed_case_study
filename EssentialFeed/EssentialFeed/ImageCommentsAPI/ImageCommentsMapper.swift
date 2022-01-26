@@ -8,7 +8,9 @@
 
 import Foundation
 
-class ImageCommentsMapper {
+final class ImageCommentsMapper {
+    private init() {}
+    
     private struct Root: Decodable {
         let items: [RemoteImageCommentItem]
         
