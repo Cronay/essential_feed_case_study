@@ -20,7 +20,7 @@ class FeedItemsMapperTests: XCTestCase {
         }
     }
     
-    func test_map_deliversErrorOn200HTTPResponseWithInvalidJSON() throws {
+    func test_map_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let invalidJSON = Data("invalid json".utf8)
         
         XCTAssertThrowsError(try FeedItemsMapper.map(invalidJSON, from: HTTPURLResponse(code: 200)))
