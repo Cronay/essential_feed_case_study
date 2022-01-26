@@ -89,13 +89,13 @@ class RemoteImageCommentsLoaderTests: XCTestCase {
 
         let item1 = makeItem(id: UUID(),
                              message: "a message",
-                             createdAt: (date: Date(timeIntervalSince1970: 1589973899), dateString: "2020-05-20T11:24:59+00:00"),
+                             createdAt: (date: Date(timeIntervalSince1970: 1589973899), iso8601String: "2020-05-20T11:24:59+00:00"),
                              author: "an author")
 
 
         let item2 = makeItem(id: UUID(),
                              message: "aother message",
-                             createdAt: (date: Date(timeIntervalSince1970: 1589898233), dateString: "2020-05-19T14:23:53+00:00"),
+                             createdAt: (date: Date(timeIntervalSince1970: 1589898233), iso8601String: "2020-05-19T14:23:53+00:00"),
                              author: "another author")
 
         let items = [item1.model, item2.model]
@@ -137,13 +137,13 @@ class RemoteImageCommentsLoaderTests: XCTestCase {
         return .failure(error)
     }
 
-    private func makeItem(id: UUID, message: String, createdAt: (date: Date, dateString: String), author: String) -> (model: ImageComment, json: [String: Any]) {
+    private func makeItem(id: UUID, message: String, createdAt: (date: Date, iso8601String: String), author: String) -> (model: ImageComment, json: [String: Any]) {
         let item = ImageComment(id: id, message: message, createdAt: createdAt.date, author: author)
 
         let json: [String: Any] = [
             "id": id.uuidString,
             "message": message,
-            "created_at": createdAt.dateString,
+            "created_at": createdAt.iso8601String,
             "author": [
                 "username": author
             ]
