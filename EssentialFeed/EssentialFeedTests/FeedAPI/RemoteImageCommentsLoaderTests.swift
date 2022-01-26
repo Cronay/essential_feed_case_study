@@ -71,7 +71,7 @@ class RemoteImageCommentsLoaderTests: XCTestCase {
         }
     }
 
-    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
+    func test_load_deliversNoItemsOn2xxHTTPResponseWithEmptyJSONList() {
         let (sut, client) = makeSUT()
 
         let samples = [200, 201, 204, 250, 299]
@@ -99,11 +99,14 @@ class RemoteImageCommentsLoaderTests: XCTestCase {
                              author: "another author")
 
         let items = [item1.model, item2.model]
+        let samples = [200, 201, 204, 250, 299]
 
-        expect(sut, toCompleteWith: .success(items), when: {
-            let json = makeItemJSON([item1.json, item2.json])
-            client.complete(withStatusCode: 200, data: json)
-        })
+        samples.enumerated().forEach { index, code in
+            expect(sut, toCompleteWith: .success(items), when: {
+                let json = makeItemJSON([item1.json, item2.json])
+                client.complete(withStatusCode: code, data: json, at: index)
+            })
+        }
     }
 
     func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
