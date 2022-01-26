@@ -9,7 +9,7 @@
 import XCTest
 import EssentialFeed
 
-class RemoteImageCommentsLoaderTests: XCTestCase {
+class LoadRemoteImageCommentsUseCaseTests: XCTestCase {
 
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
