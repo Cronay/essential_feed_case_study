@@ -78,9 +78,4 @@ class ImageCommentsMapperTests: XCTestCase {
 
         return (item, json)
     }
-
-    private func makeItemJSON(_ items: [[String: Any]]) -> Data {
-        let json = ["items": items]
-        return try! JSONSerialization.data(withJSONObject: json)
-    }
 }
