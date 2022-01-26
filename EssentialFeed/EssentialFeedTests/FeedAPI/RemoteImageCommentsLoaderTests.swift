@@ -45,48 +45,58 @@ class RemoteImageCommentsLoaderTests: XCTestCase {
         })
     }
 
-    func test_load_deliversErrorOnNon200HTTPResponse() {
+    func test_load_deliversErrorOnNon2xxHTTPResponse() {
         let (sut, client) = makeSUT()
 
-        let samples = [199, 201, 300, 400, 500]
+        let samples = [199, 300, 301, 400, 500]
 
         samples.enumerated().forEach { index, code in
-            expect(sut, toCompleteWith: .failure(RemoteImageCommentsLoader.Error.invalidData), when: {
+            expect(sut, toCompleteWith: failure(.invalidData), when: {
                 let json = makeItemJSON([])
                 client.complete(withStatusCode: code, at: index, data: json)
             })
         }
     }
 
-    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
+    func test_load_deliversErrorOn2xxHTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
 
-        expect(sut, toCompleteWith: .failure(RemoteImageCommentsLoader.Error.invalidData),when: {
-            let invalidJSON = Data("invalid json".utf8)
-            client.complete(withStatusCode: 200, data: invalidJSON)
-        })
+        let samples = [200, 201, 204, 250, 299]
+        
+        samples.enumerated().forEach { index, code in
+            expect(sut, toCompleteWith: failure(.invalidData),when: {
+                let invalidJSON = Data("invalid json".utf8)
+                client.complete(withStatusCode: code, at: index, data: invalidJSON)
+            })
+        }
     }
 
     func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
         let (sut, client) = makeSUT()
 
+        let samples = [200, 201, 204, 250, 299]
         let emptyListJSON = makeItemJSON([])
-        expect(sut, toCompleteWith: .success([]), when: {
-            client.complete(withStatusCode: 200, data: emptyListJSON)
-        })
+        
+        samples.enumerated().forEach { index, code in
+            expect(sut, toCompleteWith: .success([]), when: {
+                client.complete(withStatusCode: code, at: index, data: emptyListJSON)
+            })
+        }
     }
 
-    func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
+    func test_load_deliversItemsOn2xxHTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
 
         let item1 = makeItem(id: UUID(),
-                             imageURL: URL(string: "http://a-url.com")!)
+                             message: "a message",
+                             createdAt: (date: Date(timeIntervalSince1970: 1589973899), dateString: "2020-05-20T11:24:59+00:00"),
+                             author: "an author")
 
 
         let item2 = makeItem(id: UUID(),
-                             description: "a description",
-                             location: "a location",
-                             imageURL: URL(string: "http://another-url.com")!)
+                             message: "aother message",
+                             createdAt: (date: Date(timeIntervalSince1970: 1589898233), dateString: "2020-05-19T14:23:53+00:00"),
+                             author: "another author")
 
         let items = [item1.model, item2.model]
 
@@ -124,15 +134,17 @@ class RemoteImageCommentsLoaderTests: XCTestCase {
         return .failure(error)
     }
 
-    private func makeItem(id: UUID, description: String? = nil, location: String? = nil, imageURL: URL) -> (model: FeedImage, json: [String: Any]) {
-        let item = FeedImage(id: id, description: description, location: location, url: imageURL)
+    private func makeItem(id: UUID, message: String, createdAt: (date: Date, dateString: String), author: String) -> (model: ImageComment, json: [String: Any]) {
+        let item = ImageComment(id: id, message: message, createdAt: createdAt.date, author: author)
 
-        let json = [
+        let json: [String: Any] = [
             "id": id.uuidString,
-            "description": description,
-            "location": location,
-            "image": imageURL.absoluteString
-        ].compactMapValues { $0 }
+            "message": message,
+            "created_at": createdAt.dateString,
+            "author": [
+                "username": author
+            ]
+        ]
 
         return (item, json)
     }
