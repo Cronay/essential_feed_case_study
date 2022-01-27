@@ -77,4 +77,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+typealias RemoteFeedLoader = RemoteLoader<[FeedImage]>
+
+extension RemoteFeedLoader {
+    convenience init(url: URL, client: HTTPClient) {
+        self.init(url: url, client: client, mapper: FeedItemsMapper.map)
+    }
+}
+
 extension RemoteLoader: FeedLoader where Resource == [FeedImage] {}
+
+public typealias RemoteImageCommentsLoader = RemoteLoader<[ImageComment]>
+
+public extension RemoteImageCommentsLoader {
+    convenience init(url: URL, client: HTTPClient) {
+        self.init(url: url, client: client, mapper: ImageCommentsMapper.map)
+    }
+}
+
