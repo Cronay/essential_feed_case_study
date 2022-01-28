@@ -90,6 +90,7 @@
 		AE3A919A27A1BEBD0004C825 /* ImageCommentsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3A919927A1BEBD0004C825 /* ImageCommentsMapper.swift */; };
 		AE3A919C27A1C0AB0004C825 /* ImageComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3A919B27A1C0AB0004C825 /* ImageComment.swift */; };
 		AE3A919E27A1C52F0004C825 /* RemoteImageCommentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3A919D27A1C52F0004C825 /* RemoteImageCommentItem.swift */; };
+		AE3A91AD27A22CD20004C825 /* snapshots in Resources */ = {isa = PBXBuildFile; fileRef = AE3A91AC27A22CD20004C825 /* snapshots */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,6 +233,7 @@
 		AE3A919927A1BEBD0004C825 /* ImageCommentsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsMapper.swift; sourceTree = "<group>"; };
 		AE3A919B27A1C0AB0004C825 /* ImageComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComment.swift; sourceTree = "<group>"; };
 		AE3A919D27A1C52F0004C825 /* RemoteImageCommentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageCommentItem.swift; sourceTree = "<group>"; };
+		AE3A91AC27A22CD20004C825 /* snapshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snapshots; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,9 +358,10 @@
 		6F4FFCB3252E170A00EECC45 /* EssentialFeediOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				6F530AE12574036600A51425 /* Helpers */,
+				AE3A91AC27A22CD20004C825 /* snapshots */,
 				6F4FFCB6252E170A00EECC45 /* Info.plist */,
 				6F530ADA2573FE9D00A51425 /* FeedSnapshotTests.swift */,
+				6F530AE12574036600A51425 /* Helpers */,
 			);
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
@@ -843,6 +846,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE3A91AD27A22CD20004C825 /* snapshots in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
