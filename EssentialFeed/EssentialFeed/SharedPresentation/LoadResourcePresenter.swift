@@ -20,12 +20,29 @@ public protocol ResourceLoadingView {
     func display(_ viewModel: ResourceLoadingViewModel)
 }
 
+public protocol ResourceErrorView {
+    func display(_ viewModel: ResourceErrorViewModel)
+}
+
+public struct ResourceErrorViewModel {
+    public let message: String?
+
+    public static var noError: ResourceErrorViewModel {
+        return ResourceErrorViewModel(message: nil)
+    }
+
+    public static func error(message: String) -> ResourceErrorViewModel {
+        return ResourceErrorViewModel(message: message)
+    }
+}
+
+
 public final class LoadResourcePresenter {
     public typealias Mapper = (String) -> String
     
     private let resourceView: ResourceView
     private let loadingView: ResourceLoadingView
-    private let errorView: FeedErrorView
+    private let errorView: ResourceErrorView
     private let mapper: Mapper
 
     private var feedLoadError: String {
@@ -37,7 +54,7 @@ public final class LoadResourcePresenter {
 
     public init(feedView: ResourceView,
                 loadingView: ResourceLoadingView,
-                errorView: FeedErrorView,
+                errorView: ResourceErrorView,
                 mapper: @escaping Mapper) {
         self.resourceView = feedView
         self.loadingView = loadingView
