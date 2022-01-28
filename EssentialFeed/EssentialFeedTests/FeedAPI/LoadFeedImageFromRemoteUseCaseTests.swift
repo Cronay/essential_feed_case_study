@@ -52,7 +52,7 @@ class LoadFeedImageFromRemoteUseCaseTests: XCTestCase {
 
         samples.enumerated().forEach { index, code in
             expect(sut, toDeliver: .failure(RemoteFeedImageDataLoader.Error.invalidData), when: {
-                client.complete(withStatusCode: code, at: index, data: anyData())
+                client.complete(withStatusCode: code, data: anyData(), at: index)
             })
         }
     }
@@ -61,7 +61,7 @@ class LoadFeedImageFromRemoteUseCaseTests: XCTestCase {
         let (sut, client) = makeSUT()
 
         expect(sut, toDeliver: .failure(RemoteFeedImageDataLoader.Error.invalidData), when: {
-            client.complete(withStatusCode: 200, at: 0, data: emptyData())
+            client.complete(withStatusCode: 200, data: emptyData())
         })
     }
 
@@ -70,7 +70,7 @@ class LoadFeedImageFromRemoteUseCaseTests: XCTestCase {
         let data = anyData()
 
         expect(sut, toDeliver: .success(data), when: {
-            client.complete(withStatusCode: 200, at: 0, data: data)
+            client.complete(withStatusCode: 200, data: data)
         })
     }
 
