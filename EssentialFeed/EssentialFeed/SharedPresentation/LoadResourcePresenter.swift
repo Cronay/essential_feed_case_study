@@ -8,16 +8,6 @@
 
 import Foundation
 
-public protocol ResourceView {
-    associatedtype ResourceViewModel
-    
-    func display(_ viewModel: ResourceViewModel)
-}
-
-public protocol ResourceLoadingView {
-    func display(_ viewModel: ResourceLoadingViewModel)
-}
-
 public protocol ResourceErrorView {
     func display(_ viewModel: ResourceErrorViewModel)
 }
