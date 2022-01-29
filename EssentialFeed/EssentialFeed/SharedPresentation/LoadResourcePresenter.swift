@@ -8,10 +8,6 @@
 
 import Foundation
 
-public protocol ResourceErrorView {
-    func display(_ viewModel: ResourceErrorViewModel)
-}
-
 public final class LoadResourcePresenter<Resource, View: ResourceView> {
     public typealias Mapper = (Resource) -> View.ResourceViewModel
     

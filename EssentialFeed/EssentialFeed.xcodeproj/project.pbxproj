@@ -100,6 +100,7 @@
 		AE7ACC5727A5761E00ECAE3C /* ResourceErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7ACC5627A5761E00ECAE3C /* ResourceErrorViewModel.swift */; };
 		AE7ACC5927A5764F00ECAE3C /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7ACC5827A5764F00ECAE3C /* ResourceView.swift */; };
 		AE7ACC5B27A5767D00ECAE3C /* ResourceLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7ACC5A27A5767D00ECAE3C /* ResourceLoadingView.swift */; };
+		AE7ACC5D27A576C500ECAE3C /* ResourceErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7ACC5C27A576C500ECAE3C /* ResourceErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -255,6 +256,7 @@
 		AE7ACC5627A5761E00ECAE3C /* ResourceErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceErrorViewModel.swift; sourceTree = "<group>"; };
 		AE7ACC5827A5764F00ECAE3C /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
 		AE7ACC5A27A5767D00ECAE3C /* ResourceLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoadingView.swift; sourceTree = "<group>"; };
+		AE7ACC5C27A576C500ECAE3C /* ResourceErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -679,11 +681,12 @@
 			isa = PBXGroup;
 			children = (
 				AE7ACC4427A4651200ECAE3C /* LoadResourcePresenter.swift */,
+				AE7ACC5C27A576C500ECAE3C /* ResourceErrorView.swift */,
 				AE7ACC5627A5761E00ECAE3C /* ResourceErrorViewModel.swift */,
-				AE7ACC5427A575AB00ECAE3C /* ResourceLoadingViewModel.swift */,
-				AE7ACC4C27A49CFD00ECAE3C /* Shared.strings */,
-				AE7ACC5827A5764F00ECAE3C /* ResourceView.swift */,
 				AE7ACC5A27A5767D00ECAE3C /* ResourceLoadingView.swift */,
+				AE7ACC5427A575AB00ECAE3C /* ResourceLoadingViewModel.swift */,
+				AE7ACC5827A5764F00ECAE3C /* ResourceView.swift */,
+				AE7ACC4C27A49CFD00ECAE3C /* Shared.strings */,
 			);
 			path = SharedPresentation;
 			sourceTree = "<group>";
@@ -990,6 +993,7 @@
 				6F050B6524FAADB40027E003 /* LocalFeedLoader.swift in Sources */,
 				6FB0240524E117B80093DAC8 /* HTTPClient.swift in Sources */,
 				6F63A716254DDB8700785B21 /* FeedImageViewModel.swift in Sources */,
+				AE7ACC5D27A576C500ECAE3C /* ResourceErrorView.swift in Sources */,
 				6F9CCDC22554749E00B6231E /* RemoteFeedImageDataLoader.swift in Sources */,
 				6FE39CBA2555EFA8002CE2B0 /* LocalFeedImageDataLoader.swift in Sources */,
 				6F89883524DD598300880E24 /* FeedImage.swift in Sources */,
