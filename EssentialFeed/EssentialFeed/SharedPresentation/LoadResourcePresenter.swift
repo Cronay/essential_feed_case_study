@@ -22,19 +22,6 @@ public protocol ResourceErrorView {
     func display(_ viewModel: ResourceErrorViewModel)
 }
 
-public struct ResourceErrorViewModel {
-    public let message: String?
-
-    public static var noError: ResourceErrorViewModel {
-        return ResourceErrorViewModel(message: nil)
-    }
-
-    public static func error(message: String) -> ResourceErrorViewModel {
-        return ResourceErrorViewModel(message: message)
-    }
-}
-
-
 public final class LoadResourcePresenter<Resource, View: ResourceView> {
     public typealias Mapper = (Resource) -> View.ResourceViewModel
     
