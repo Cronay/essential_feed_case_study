@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import EssentialFeed
+import EssentialFeed
 
 final class SharedLocalizationTests: XCTestCase {
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
