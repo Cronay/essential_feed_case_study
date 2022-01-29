@@ -35,3 +35,9 @@ extension WeakRefVirtualProxy: FeedImageView where T: FeedImageView, T.Image == 
         object?.display(model)
     }
 }
+
+extension WeakRefVirtualProxy: ResourceView where T: ResourceView, T.ResourceViewModel == UIImage {
+    func display(_ model: UIImage) {
+        object?.display(model)
+    }
+}
