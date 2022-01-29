@@ -14,10 +14,6 @@ public protocol ResourceView {
     func display(_ viewModel: ResourceViewModel)
 }
 
-public struct ResourceLoadingViewModel {
-    public let isLoading: Bool
-}
-
 public protocol ResourceLoadingView {
     func display(_ viewModel: ResourceLoadingViewModel)
 }
