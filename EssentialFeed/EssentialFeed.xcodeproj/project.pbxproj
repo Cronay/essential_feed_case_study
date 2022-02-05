@@ -118,6 +118,7 @@
 		AE7D823927AED8C700D5D0E6 /* LIST_WITH_COMMENTS_light.png in Resources */ = {isa = PBXBuildFile; fileRef = AE7D823727AED8C700D5D0E6 /* LIST_WITH_COMMENTS_light.png */; };
 		AE7D823C27AED8EC00D5D0E6 /* ImageComments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7D823B27AED8EC00D5D0E6 /* ImageComments.storyboard */; };
 		AE7D823E27AEDA7400D5D0E6 /* ImageCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D823D27AEDA7400D5D0E6 /* ImageCommentCell.swift */; };
+		AE7D824027AEE78D00D5D0E6 /* CellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7D823F27AEE78D00D5D0E6 /* CellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,6 +295,7 @@
 		AE7D823727AED8C700D5D0E6 /* LIST_WITH_COMMENTS_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LIST_WITH_COMMENTS_light.png; sourceTree = "<group>"; };
 		AE7D823B27AED8EC00D5D0E6 /* ImageComments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageComments.storyboard; sourceTree = "<group>"; };
 		AE7D823D27AEDA7400D5D0E6 /* ImageCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentCell.swift; sourceTree = "<group>"; };
+		AE7D823F27AEE78D00D5D0E6 /* CellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -758,6 +760,7 @@
 			isa = PBXGroup;
 			children = (
 				6FB52740252F615E00682588 /* ListViewController.swift */,
+				AE7D823F27AEE78D00D5D0E6 /* CellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1124,6 +1127,7 @@
 				6F530AEF2574060700A51425 /* UITableView+HeaderSizing.swift in Sources */,
 				6F421C73254D886000DA786E /* ErrorView.swift in Sources */,
 				6F421C87254D8FB200DA786E /* UIRefreshControl+Helpers.swift in Sources */,
+				AE7D824027AEE78D00D5D0E6 /* CellController.swift in Sources */,
 				6F7F274B25409DD200D384ED /* UITableView+Dequeueing.swift in Sources */,
 				6F73D4BE25322120004E214E /* UIView+Shimmering.swift in Sources */,
 				6F7F275225409F0300D384ED /* UIImageView+Animations.swift in Sources */,
