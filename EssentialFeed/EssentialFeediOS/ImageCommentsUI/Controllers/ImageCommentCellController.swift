@@ -23,12 +23,4 @@ public class ImageCommentCellController: CellController {
         cell.dateLabel.text = model.createdAt
         return cell
     }
-    
-    public func preload() {
-        
-    }
-    
-    public func cancelLoad() {
-        
-    }
 }
