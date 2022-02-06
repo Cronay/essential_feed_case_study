@@ -40,6 +40,7 @@
 		6FE6A22C2561C1D600161571 /* FeedLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6A22B2561C1D600161571 /* FeedLoaderStub.swift */; };
 		AE89AEB027B01AF10056125F /* CommentsUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE89AEAF27B01AF10056125F /* CommentsUIIntegrationTests.swift */; };
 		AE89AEB227B01CFC0056125F /* CommentsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE89AEB127B01CFC0056125F /* CommentsUIComposer.swift */; };
+		AE89AEB427B022410056125F /* CommentsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE89AEB327B022410056125F /* CommentsViewAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		6FE6A22B2561C1D600161571 /* FeedLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderStub.swift; sourceTree = "<group>"; };
 		AE89AEAF27B01AF10056125F /* CommentsUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIIntegrationTests.swift; sourceTree = "<group>"; };
 		AE89AEB127B01CFC0056125F /* CommentsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIComposer.swift; sourceTree = "<group>"; };
+		AE89AEB327B022410056125F /* CommentsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				6F248C44255AFCF800F37779 /* Info.plist */,
 				6F8A64C12581808A004DB960 /* CombineHelpers.swift */,
 				AE89AEB127B01CFC0056125F /* CommentsUIComposer.swift */,
+				AE89AEB327B022410056125F /* CommentsViewAdapter.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				6F8A64C22581808A004DB960 /* CombineHelpers.swift in Sources */,
 				6F248C37255AFCF400F37779 /* AppDelegate.swift in Sources */,
 				6F248C39255AFCF400F37779 /* SceneDelegate.swift in Sources */,
+				AE89AEB427B022410056125F /* CommentsViewAdapter.swift in Sources */,
 				6FB88289256A90D30000DE1D /* FeedUIComposer.swift in Sources */,
 				6FB88286256A90D30000DE1D /* LoadResourcePresentationAdapter.swift in Sources */,
 				6FB88285256A90D30000DE1D /* FeedViewAdapter.swift in Sources */,
