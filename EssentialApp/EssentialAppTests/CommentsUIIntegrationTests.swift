@@ -123,7 +123,7 @@ class CommentsUIIntegrationTests: FeedUIIntegrationTests {
         XCTAssertEqual(sut.errorMessage, nil)
     }
 
-    override func test_loadFeedCompletion_dispatchedFromBackgroundToMainThread() {
+    func test_loadCommentsCompletion_dispatchedFromBackgroundToMainThread() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
 
