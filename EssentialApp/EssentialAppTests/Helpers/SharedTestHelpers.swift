@@ -24,3 +24,20 @@ func uniqueFeed() -> [FeedImage] {
     return [FeedImage(id: UUID(), description: "any", location: "any", url: URL(string: "http://any-url.com")!)]
 }
 
+var commentsTitle: String {
+    ImageCommentsPresenter.title
+}
+
+var feedTitle: String {
+    FeedPresenter.title
+}
+
+var loadError: String {
+    LoadResourcePresenter<Any, DummyView>.loadError
+}
+
+private class DummyView: ResourceView {
+    func display(_ viewModel: Any) {}
+}
+
+
