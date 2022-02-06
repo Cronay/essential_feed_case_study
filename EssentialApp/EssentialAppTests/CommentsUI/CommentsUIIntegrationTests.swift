@@ -148,46 +148,4 @@ final class CommentsUIIntegrationTests: XCTestCase {
     private func makeComment(message: String = "any message", author: String = "any author") -> ImageComment {
         return ImageComment(id: UUID(), message: message, createdAt: Date(), author: author)
     }
-    
-    func assertThat(_ sut: ListViewController, isRendering comments: [ImageComment], file: StaticString = #filePath, line: UInt = #line) {
-        guard sut.numberOfRenderedCommentViews() == comments.count else {
-            return XCTFail("Expected \(comments.count) comments, got \(sut.numberOfRenderedCommentViews()) instead", file: file, line: line)
-        }
-        
-        let viewModel = ImageCommentsPresenter.map(comments)
-
-        viewModel.comments.enumerated().forEach { index, comment in
-            XCTAssertEqual(sut.commentMessage(at: index), comment.message, "message at \(index)", file: file, line: line)
-            XCTAssertEqual(sut.commentDate(at: index), comment.createdAt, "date at \(index)", file: file, line: line)
-            XCTAssertEqual(sut.commentAuthor(at: index), comment.author, "author at \(index)", file: file, line: line)
-        }
-    }
-
-    private func executeRunLoopToCleanUpReferences() {
-        RunLoop.current.run(until: Date())
-    }
-        
-    private class LoaderSpy{
-
-        private var commentsRequests = [PassthroughSubject<[ImageComment], Error>]()
-
-        var loadCommentsCallCount: Int {
-            return commentsRequests.count
-        }
-        
-        func loadPublisher() -> AnyPublisher<[ImageComment], Error> {
-            let publisher = PassthroughSubject<[ImageComment], Error>()
-            commentsRequests.append(publisher)
-            return publisher.eraseToAnyPublisher()
-        }
-
-        func completeCommentsLoading(with comments: [ImageComment] = [], at index: Int = 0) {
-            commentsRequests[index].send(comments)
-        }
-
-        func completeCommentsLoadingWithError(at index: Int) {
-            let error = NSError(domain: "an error", code: 0)
-            commentsRequests[index].send(completion: .failure(error))
-        }
-    }
 }
