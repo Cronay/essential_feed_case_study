@@ -12,7 +12,7 @@ import EssentialFeed
 public extension HTTPClient {
     typealias Publisher = AnyPublisher<(Data, HTTPURLResponse), Error>
 
-    func getPublisher(from url: URL) -> Publisher {
+    func getPublisher(for url: URL) -> Publisher {
         var task: HTTPClientTask?
 
         return Deferred {
