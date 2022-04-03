@@ -10,7 +10,7 @@ import Foundation
 import EssentialFeed
 
 public extension Paginated {
-    public init(items: [Item], loadMorePublisher: (() -> AnyPublisher<Self, Error>)?) {
+    init(items: [Item], loadMorePublisher: (() -> AnyPublisher<Self, Error>)?) {
         self.init(items: items, loadMore: loadMorePublisher.map { publisher in
             return { completion in
                 publisher().subscribe(Subscribers.Sink(receiveCompletion: { result in
