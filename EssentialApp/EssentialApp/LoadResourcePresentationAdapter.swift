@@ -28,8 +28,8 @@ final class LoadResourcePresentationAdapter<Resource, View: ResourceView> {
             case let .failure(error):
                 self?.presenter?.didFinishLoading(with: error)
             }
-        } receiveValue: { [weak self] feed in
-            self?.presenter?.didFinishLoading(with: feed)
+        } receiveValue: { [weak self] resource in
+            self?.presenter?.didFinishLoading(with: resource)
         }
     }
 }
