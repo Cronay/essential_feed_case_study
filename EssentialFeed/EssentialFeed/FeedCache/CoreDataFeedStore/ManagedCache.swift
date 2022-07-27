@@ -20,12 +20,13 @@ class ManagedCache: NSManagedObject {
 
     @NSManaged var timestamp: Date
     @NSManaged var images: NSOrderedSet
-
-    static func getUniqueManagedCache(in context: NSManagedObjectContext) -> ManagedCache {
-        if let fetchedCache = try? fetchCache(in: context) {
-            context.delete(fetchedCache)
-        }
-
+    
+    static func deleteCache(in context: NSManagedObjectContext) throws {
+        try fetchCache(in: context).map(context.delete)
+    }
+    
+    static func getUniqueManagedCache(in context: NSManagedObjectContext) throws -> ManagedCache {
+        try deleteCache(in: context)
         return ManagedCache(context: context)
     }
 
