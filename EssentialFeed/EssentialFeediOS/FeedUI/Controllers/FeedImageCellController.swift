@@ -74,7 +74,7 @@ extension FeedImageCellController: UITableViewDataSource, UITableViewDelegate, U
         cell = nil
     }
 }
-extension FeedImageCellController: ResourceView, ResourceLoadingView, ResourceErrorView{
+extension FeedImageCellController: ResourceView, ResourceLoadingView, ResourceErrorView {
     public func display(_ viewModel: UIImage) {
         cell?.feedImageView.setImageAnimated(viewModel)
     }
