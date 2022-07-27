@@ -41,6 +41,7 @@
 		AE89AEBA27B031950056125F /* ListViewController+CommentsTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE89AEB927B031950056125F /* ListViewController+CommentsTestHelpers.swift */; };
 		AE89AEBD27B0322A0056125F /* CommentsUIIntegrationTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE89AEBC27B0322A0056125F /* CommentsUIIntegrationTests+LoaderSpy.swift */; };
 		AE89AEBF27B032650056125F /* CommentsUIIntegrationTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE89AEBE27B032650056125F /* CommentsUIIntegrationTests+Assertions.swift */; };
+		AEC3B8B52891D20B0054E5B3 /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC3B8B42891D20B0054E5B3 /* NullStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		AE89AEB927B031950056125F /* ListViewController+CommentsTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListViewController+CommentsTestHelpers.swift"; sourceTree = "<group>"; };
 		AE89AEBC27B0322A0056125F /* CommentsUIIntegrationTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentsUIIntegrationTests+LoaderSpy.swift"; sourceTree = "<group>"; };
 		AE89AEBE27B032650056125F /* CommentsUIIntegrationTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentsUIIntegrationTests+Assertions.swift"; sourceTree = "<group>"; };
+		AEC3B8B42891D20B0054E5B3 /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				6F8A64C12581808A004DB960 /* CombineHelpers.swift */,
 				AE89AEB127B01CFC0056125F /* CommentsUIComposer.swift */,
 				AE89AEB327B022410056125F /* CommentsViewAdapter.swift */,
+				AEC3B8B42891D20B0054E5B3 /* NullStore.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 			files = (
 				6F8A64C22581808A004DB960 /* CombineHelpers.swift in Sources */,
 				6F248C37255AFCF400F37779 /* AppDelegate.swift in Sources */,
+				AEC3B8B52891D20B0054E5B3 /* NullStore.swift in Sources */,
 				6F248C39255AFCF400F37779 /* SceneDelegate.swift in Sources */,
 				AE89AEB427B022410056125F /* CommentsViewAdapter.swift in Sources */,
 				6FB88289256A90D30000DE1D /* FeedUIComposer.swift in Sources */,
