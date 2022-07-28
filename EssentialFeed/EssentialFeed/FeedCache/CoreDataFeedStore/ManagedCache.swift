@@ -22,7 +22,7 @@ class ManagedCache: NSManagedObject {
     @NSManaged var images: NSOrderedSet
     
     static func deleteCache(in context: NSManagedObjectContext) throws {
-        try fetchCache(in: context).map(context.delete)
+        try fetchCache(in: context).map(context.delete).map(context.save)
     }
     
     static func getUniqueManagedCache(in context: NSManagedObjectContext) throws -> ManagedCache {

@@ -113,7 +113,7 @@ class CoreDataFeedImageDataStoreTests: XCTestCase {
                 exp.fulfill()
 
             case .success:
-                sut.insert(data, for: anyURL()) { result in
+                sut.insert(data, for: url) { result in
                     if case let Result.failure(error) = result {
                         XCTFail("Failed to insert \(data) with error \(error)", file: file, line: line)
                     }

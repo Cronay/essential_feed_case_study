@@ -49,10 +49,11 @@ private extension Array where Element == LocalFeedImage {
             managedFeedImage.imageDescription = localImage.description
             managedFeedImage.location = localImage.location
             managedFeedImage.url = localImage.url
+            managedFeedImage.data = context.userInfo[localImage.url] as? Data
 
             return managedFeedImage
         }
-
+        context.userInfo.removeAllObjects()
         return NSOrderedSet(array: managedFeedArray)
     }
 }
