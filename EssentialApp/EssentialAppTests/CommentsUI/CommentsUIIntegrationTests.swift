@@ -30,10 +30,15 @@ final class CommentsUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.loadCommentsCallCount, 1, "Expected a loading request once view is loaded")
 
         sut.simulateUserInitiatedReload()
-        XCTAssertEqual(loader.loadCommentsCallCount, 2, "Expected another loading request once user initiates a load")
-
+        XCTAssertEqual(loader.loadCommentsCallCount, 1, "Expected no loading request when user initiates a load before previous request has finished")
+        
+        loader.completeCommentsLoading(at: 0)
         sut.simulateUserInitiatedReload()
-        XCTAssertEqual(loader.loadCommentsCallCount, 3, "Expected a third loading request once user initiates another load")
+        XCTAssertEqual(loader.loadCommentsCallCount, 2, "Expected another loading request once user initiates a load after previous load finished")
+
+        loader.completeCommentsLoading(at: 1)
+        sut.simulateUserInitiatedReload()
+        XCTAssertEqual(loader.loadCommentsCallCount, 3, "Expected a third loading request once user initiates another load after previous load finished")
     }
 
     func test_loadingCommentsIndicator_isVisibleWhileLoadingComments() {
