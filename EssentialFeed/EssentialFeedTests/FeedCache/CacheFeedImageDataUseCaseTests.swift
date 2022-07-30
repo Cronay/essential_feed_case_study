@@ -44,21 +44,6 @@ class CacheFeedImageDataUseCaseTests: XCTestCase {
         })
     }
 
-    func test_saveImageDataFromURL_doesNotDeliverResultAfterInstanceHasBeenDeallocated() {
-        let store = FeedImageDataStoreSpy()
-        var sut: LocalFeedImageDataLoader? = LocalFeedImageDataLoader(store: store)
-
-        var receivedResults = [LocalFeedImageDataLoader.SaveResult]()
-        _ = sut?.save(anyData(), for: anyURL()) { receivedResults.append($0) }
-
-        sut = nil
-
-        store.completeInsertion(with: anyNSError())
-        store.completeInsertionSuccessfully()
-
-        XCTAssertTrue(receivedResults.isEmpty)
-    }
-
     // MARK: - Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LocalFeedImageDataLoader, store: FeedImageDataStoreSpy) {
@@ -71,7 +56,9 @@ class CacheFeedImageDataUseCaseTests: XCTestCase {
 
     private func expect(_ sut: LocalFeedImageDataLoader, toCompleteWith expectedResult: LocalFeedImageDataLoader.SaveResult, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for store to complete")
-
+        
+        action()
+        
         sut.save(anyData(), for: anyURL()) { receivedResult in
             switch (expectedResult, receivedResult) {
             case (.success, .success):
@@ -85,9 +72,7 @@ class CacheFeedImageDataUseCaseTests: XCTestCase {
             }
             exp.fulfill()
         }
-
-        action()
-
+        
         wait(for: [exp], timeout: 1.0)
     }
 }
