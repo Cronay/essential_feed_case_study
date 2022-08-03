@@ -146,17 +146,13 @@ class EssentialFeedCacheIntegrationTests: XCTestCase {
     }
 
     private func expect(_ sut: LocalFeedImageDataLoader, toLoad expectedData: Data, for url: URL, file: StaticString = #filePath, line: UInt = #line) {
-        let exp = expectation(description: "Wait for load completion")
-        _ = sut.loadImageData(from: url) { result in
-            switch result {
-            case let .success(receivedData):
-                XCTAssertEqual(expectedData, receivedData, file: file, line: line)
-            case let .failure(error):
-                XCTFail("Expected result was success, got \(error) instead", file: file, line: line)
-            }
-            exp.fulfill()
+        let result = Result { try sut.loadImageData(from: url) }
+        switch result {
+        case let .success(receivedData):
+            XCTAssertEqual(expectedData, receivedData, file: file, line: line)
+        case let .failure(error):
+            XCTFail("Expected result was success, got \(error) instead", file: file, line: line)
         }
-        wait(for: [exp], timeout: 1.0)
     }
 
     private func save(_ feed: [FeedImage], with loader: LocalFeedLoader, file: StaticString = #filePath, line: UInt = #line) {
@@ -171,14 +167,10 @@ class EssentialFeedCacheIntegrationTests: XCTestCase {
     }
 
     private func save(_ data: Data, for url: URL, with imageLoader: LocalFeedImageDataLoader, file: StaticString = #filePath, line: UInt = #line) {
-        let saveExp = expectation(description: "Wait for save completion")
-        imageLoader.save(data, for: url) { result in
-            if case Result.failure(_) = result {
-                XCTFail("Expected to save feed image successfully", file: file, line: line)
-            }
-            saveExp.fulfill()
+        let result = Result { try imageLoader.save(data, for: url) }
+        if case Result.failure = result {
+            XCTFail("Expected to save feed image successfully", file: file, line: line)
         }
-        wait(for: [saveExp], timeout: 1.0)
     }
 
     private func validateCache(with loader: LocalFeedLoader, file: StaticString = #file, line: UInt = #line) {
