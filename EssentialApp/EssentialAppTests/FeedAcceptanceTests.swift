@@ -144,18 +144,16 @@ class FeedAcceptanceTests: XCTestCase {
             self.cachedFeed = cachedFeed
         }
 
-        func deleteCachedFeed(completion: @escaping FeedStore.DeletionCompletion) {
+        func deleteCachedFeed() throws {
             cachedFeed = nil
-            completion(.success(()))
         }
-
-        func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping FeedStore.InsertionCompletion) {
+        
+        func insert(_ feed: [LocalFeedImage], timestamp: Date) throws {
             cachedFeed = (feed, timestamp)
-            completion(.success(()))
         }
-
-        func retrieve(completion: @escaping FeedStore.RetrievalCompletion) {
-            completion(.success(cachedFeed))
+        
+        func retrieve() throws -> CachedFeed? {
+            return cachedFeed
         }
 
         func insert(_ data: Data, for url: URL) throws {
