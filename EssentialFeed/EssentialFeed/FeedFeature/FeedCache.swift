@@ -29,4 +29,6 @@ public extension FeedCache {
         
         return try result.get()
     }
+    
+    func save(_ feed: [FeedImage], completion: @escaping (Result) -> Void) {}
 }
