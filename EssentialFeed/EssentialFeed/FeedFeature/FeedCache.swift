@@ -11,5 +11,22 @@ import Foundation
 public protocol FeedCache {
     typealias Result = Swift.Result<Void, Error>
 
+    @available(*, deprecated)
     func save(_ feed: [FeedImage], completion: @escaping (Result) -> Void)
+    
+    func save(_ feed: [FeedImage]) throws
+}
+
+public extension FeedCache {
+    func save(_ feed: [FeedImage]) throws {
+        let group = DispatchGroup()
+        group.enter()
+        var result: Result!
+        save(feed) { capturedResult in
+            result = capturedResult
+            group.leave()
+        }
+        
+        return try result.get()
+    }
 }
