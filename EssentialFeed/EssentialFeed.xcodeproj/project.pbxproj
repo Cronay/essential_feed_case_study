@@ -577,7 +577,6 @@
 				AE7ACC6127A5934A00ECAE3C /* ImageCommentsPresentation */,
 				AE3A91A027A1E24D0004C825 /* SharedAPI */,
 				AE3A91A127A1E2540004C825 /* SharedAPIInfra */,
-				AE7ACC4327A464FF00ECAE3C /* SharedPresentation */,
 			);
 			path = EssentialFeed;
 			sourceTree = "<group>";
@@ -692,6 +691,7 @@
 		AE3A91A127A1E2540004C825 /* SharedAPIInfra */ = {
 			isa = PBXGroup;
 			children = (
+				AE7ACC4327A464FF00ECAE3C /* SharedPresentation */,
 				6FA7ED0924E742AA00CD5637 /* URLSessionHTTPClient.swift */,
 			);
 			path = SharedAPIInfra;
